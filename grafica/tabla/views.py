@@ -15,4 +15,4 @@ def datos(request):
     return JsonResponse({"datos":datosdb})
 
 def index(request):
-    return render(request, 'frontend/index.html')
+    return render(request, 'tabla/index.html')

@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <title>Tabla - Diego Andrés Figueroa Peart A01660987</title>
+    </head>
+    <div>
+        <h2 font="">Tabla de alumnos y total de horas dedicadas:</h2>
+    </div>
+    <div>
+        <canvas id="myChart" width="500"></canvas>
+    </div>  
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        $.getJSON('datos', function(data) {
+            console.log(data);
+        var etiquetas = data.datos.map(function(obj) {
+            return obj.nombre;
+        });
+        console.log(etiquetas);
+        var valores = data.datos.map(function(obj) {
+            return obj.horas;
+        });
+        console.log(valores);
+        const ctx = document.getElementById('myChart');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: etiquetas,
+                datasets: [{
+                    label: 'Total de horas dedicadas',
+                    data: valores,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+    </script>
+</html>
